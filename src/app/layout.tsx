@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Noto_Kufi_Arabic } from "next/font/google";
+import './globals.css'
 
 const bodyFontFamily = Noto_Kufi_Arabic({ subsets: ['arabic'] })
 

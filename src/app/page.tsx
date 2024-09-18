@@ -1,7 +1,10 @@
+import Header from "@/components/header"
+
 export default function Home() {
   return (
     <div className="">
-      Cloud Hosting Project
+      <Header/>
+      السلام عليكم ورحمة الله وبركاته
     </div>
   );
 }
