@@ -13,16 +13,9 @@ const NotFound = () => {
         <p className="text-lg md:text-xl mb-8">
           Sorry, the page you're looking for doesn't exist.
         </p>
-        <Link href="/">
-          <button className="bg-white text-blue-600 py-3 px-8 rounded-full text-lg font-semibold shadow-md hover:bg-gray-100 transition duration-300">
+        <Link href="/" className="cursor-pointer bg-white text-blue-600 py-3 px-8 rounded-full text-lg font-semibold shadow-md hover:bg-gray-100 transition duration-300">
             Back to Home
-          </button>
         </Link>
-      </div>
-      <div className="absolute bottom-0 w-full">
-        <svg className="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#ffffff" fillOpacity="1" d="M0,256L1440,160L1440,320L0,320Z"></path>
-        </svg>
       </div>
     </div>
   )
