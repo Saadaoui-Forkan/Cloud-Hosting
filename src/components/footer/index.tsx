@@ -16,6 +16,8 @@ const Footer = () => {
               alt="Logo"
               height={150}
               width={150}
+              priority  // default value is true
+              //priority={true} ==> free loading: load the image then the content / priority={false} ==> lazy loading: load the content then the image
               className="cursor-pointer"
             />
           </div>

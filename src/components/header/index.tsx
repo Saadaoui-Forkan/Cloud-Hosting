@@ -22,7 +22,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center shadow-md h-20 relative">
+    <div className="flex justify-between items-center shadow-md h-20 relative z-10">
       {/* Logo */}
       <Link href="/">
         <Image
@@ -30,6 +30,7 @@ const Header = () => {
           alt="Logo"
           height={100}
           width={100}
+          priority
           className="cursor-pointer"
         />
       </Link>

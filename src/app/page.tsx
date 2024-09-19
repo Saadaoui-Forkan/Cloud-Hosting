@@ -1,11 +1,12 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header"
+
+import Hero from "@/components/home/Hero";
+import Plans from "@/components/home/Plans";
 
 export default function Home() {
   return (
     <div className="">
-      السلام عليكم ورحمة الله وبركاته
-      
+      <Hero/> 
+      <Plans/>
     </div>
   );
 }
