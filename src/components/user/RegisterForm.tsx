@@ -20,7 +20,7 @@ const RegisterForm = () => {
     <form onSubmit={handleRegister} className="space-y-6">
       <div>
         <label
-          htmlFor="email"
+          htmlFor="name"
           className="block text-sm font-medium text-gray-700"
         >
           Username
@@ -32,7 +32,6 @@ const RegisterForm = () => {
           onChange={(e) => setName(e.target.value)}
           className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           placeholder="Enter your email"
-          required
         />
       </div>
 
@@ -50,7 +49,6 @@ const RegisterForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           placeholder="Enter your email"
-          required
         />
       </div>
 
@@ -68,7 +66,6 @@ const RegisterForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           placeholder="Enter your password"
-          required
         />
       </div>
 
