@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { ToastContainer } from 'react-toastify';
 import './globals.css'
 import { Ubuntu } from 'next/font/google';
 import Header from "@/components/header";
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={ubuntu.className}>
         <Header/>
+        <ToastContainer />
         <main>
           {children}
         </main>
