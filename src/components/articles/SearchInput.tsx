@@ -1,19 +1,26 @@
-'use client'
-import React, { useState } from 'react'
+"use client";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 const SearchInput = () => {
-    const [searchTerm, setSearchTerm] = useState('')
+  const router = useRouter();
+  const [searchArticle, setSearchArticle] = useState("");
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(searchArticle);
+    router.push(`/articles/search?article=${searchArticle}`);
+  };
   return (
-    <div className="flex justify-center m-5">
-        <input 
-          type="text" 
-          placeholder="Search articles..." 
-          className="px-4 py-2 border rounded-lg w-full md:w-1/2" 
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} 
-        />
-    </div>
-  )
-}
+    <form className="flex justify-center m-5" onSubmit={handleSearch}>
+      <input
+        type="search"
+        placeholder="Search articles..."
+        className="px-4 py-2 border rounded-lg w-full md:w-1/2"
+        value={searchArticle}
+        onChange={(e) => setSearchArticle(e.target.value)}
+      />
+    </form>
+  );
+};
 
-export default SearchInput
+export default SearchInput;

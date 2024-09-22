@@ -1,8 +1,15 @@
+interface SearchArticlesProps {
+  searchParams: {
+    article: string
+  }
+}
 
-
-const Search = () => {
+const Search = ({ searchParams }: SearchArticlesProps) => {
+  console.log(searchParams)
   return (
-    <div>Search</div>
+    <div>
+      <h1>Search Text is: {searchParams.article}</h1>
+    </div>
   )
 }
 
