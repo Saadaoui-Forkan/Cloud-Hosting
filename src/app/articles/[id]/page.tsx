@@ -1,3 +1,5 @@
+import AddCommentForm from "@/components/comments/AddCommentForm";
+import Comments from "@/components/comments/Comments";
 import { Article } from "@/utils/types";
 
 interface SingleArticleProps {
@@ -21,6 +23,8 @@ const SingleArticle = async ({ params }: SingleArticleProps) => {
                 <span className="text-sm text-gray-400 block mb-6">01-01-2024</span>
                 <p className="text-gray-700 leading-relaxed">{article.body}</p>
             </div>
+            <AddCommentForm/>
+            <Comments/>
         </section>
     );
 }

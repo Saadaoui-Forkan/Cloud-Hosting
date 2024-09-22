@@ -2,12 +2,12 @@ import { Metadata } from "next";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css'
-import { Ubuntu } from 'next/font/google';
+import { Tajawal  } from 'next/font/google';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const ubuntu = Ubuntu({
-  subsets: ['latin'],
+const ubuntu = Tajawal ({
+  subsets: ['arabic'],
   weight: ['300', '400', '500', '700'],
 });
 
