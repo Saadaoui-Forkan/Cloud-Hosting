@@ -4,3 +4,8 @@ export interface Article {
     title:string;
     body:string;
 }
+
+export interface createArticleDTO { //DTO: data transfer object
+    title: string;
+    body: string;
+}
