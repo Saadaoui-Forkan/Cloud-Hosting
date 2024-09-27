@@ -7,5 +7,5 @@ export interface Article {
 
 export interface createArticleDTO { //DTO: data transfer object
     title: string;
-    body: string;
+    description: string;
 }
