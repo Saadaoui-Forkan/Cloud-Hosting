@@ -14,3 +14,9 @@ export interface updateArticleDTO {
     title?: string;
     description?: string;
 } 
+
+export interface RegisterUserDTO {
+    username: string,
+    email: string,
+    password: string
+}
