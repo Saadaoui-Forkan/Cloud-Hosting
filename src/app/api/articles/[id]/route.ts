@@ -56,3 +56,30 @@ export async function PUT(request: NextRequest, { params }: Props) {
         }, { status: 500 })
     }
 }
+
+/**
+ *  @method  DELETE
+ *  @route   /api/articles/:id
+ *  @desc    Delete Single Article
+ *  @access  public
+*/
+export async function DELETE(request: NextRequest, { params }: Props) {
+    try {
+        const article = await prisma.article.findUnique({
+            where: { id: parseInt(params.id) },
+        });
+        if (!article) {
+            return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
+        }
+    
+        const body = (await request.json()) as updateArticleDTO
+        await prisma.article.delete({
+            where: { id: parseInt(params.id) },
+        })
+        return NextResponse.json({ message: "Article Deleted" }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({
+            message: "Internal Server Error"
+        }, { status: 500 })
+    }
+}
