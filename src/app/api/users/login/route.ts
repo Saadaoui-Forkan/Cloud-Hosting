@@ -3,7 +3,7 @@ import { JWTPayload, LoginUserDTO } from "@/utils/types";
 import { loginSchema } from "@/utils/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { generateJWT } from "@/utils/generateToken";
+import { setCookie } from "@/utils/generateToken";
 
 /**
  *  @method  POST
@@ -50,14 +50,18 @@ export async function POST(request: NextRequest) {
             isAdmin: user.isAdmin,
             username: user.username
         }
-        const token = generateJWT(jwtPayload)
+
+        const cookie = setCookie(jwtPayload)
 
         const data = {
+            id: user.id,
             username: user.username,
-            isAdmin: user.isAdmin,
-            token
+            isAdmin: user.isAdmin
         }
-        return NextResponse.json({ message: 'Authenticated', data }, { status: 200 })
+        return NextResponse.json(
+          { message: "Authenticated", data },
+          { status: 200, headers: { "Set-Cookie": cookie } }
+        );
     } catch (error) {
         return NextResponse.json({
             message: "Internal Server Error"
