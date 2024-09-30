@@ -31,3 +31,9 @@ export type JWTPayload = {
     isAdmin: boolean,
     username: string
 }
+
+export interface UpdateProfileDTO {
+    email?: string,
+    password?: string,
+    username?: string
+}
