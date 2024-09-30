@@ -66,3 +66,19 @@ export const loginSchema = z.object({
       required_error: "Password is required",
     })
 })
+
+// Create Article Schema
+export const createCommentSchema = z.object({
+  text: z
+  .string({
+    required_error: "Comment is required",
+  })
+  .min(2, {
+    message:
+      "The title must contain at least 2 characters and a maximum of 300 characters.",
+  })
+  .max(300, {
+    message:
+      "The title must contain at least 2 characters and a maximum of 300 characters.",
+  })
+})

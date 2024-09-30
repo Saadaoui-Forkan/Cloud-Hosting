@@ -10,7 +10,7 @@ interface Props {
 
 /**
  *  @method  DELETE
- *  @route   /api/profile/:id
+ *  @route   /api/users/profile/:id
  *  @desc    Delete User Profile
  *  @access  private (Only User Himself)
 */
@@ -48,7 +48,7 @@ export async function DELETE(request: NextRequest, { params }: Props) {
 
 /**
  *  @method  PUT
- *  @route   /api/profile/:id
+ *  @route   /api/users/profile/:id
  *  @desc    Update User Profile
  *  @access  private (Only User Himself)
 */
@@ -90,7 +90,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
 
 /**
  *  @method  GET
- *  @route   /api/profile/:id
+ *  @route   /api/users/profile/:id
  *  @desc    Get User Profile
  *  @access  private (Only User Himself)
 */

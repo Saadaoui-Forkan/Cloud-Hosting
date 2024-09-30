@@ -31,10 +31,10 @@ export async function POST(request: NextRequest) {
         const body = (await request.json()) as createArticleDTO;
         const validation = createArticleSchema.safeParse(body);
         if (!validation.success) {
-        return NextResponse.json(
-            { message: validation.error.errors[0].message },
-            { status: 400 }
-        );
+            return NextResponse.json(
+                { message: validation.error.errors[0].message },
+                { status: 400 }
+            );
         }
         const newArticle = await prisma.article.create({
             data: {

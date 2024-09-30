@@ -37,3 +37,8 @@ export interface UpdateProfileDTO {
     password?: string,
     username?: string
 }
+
+export interface CreateCommentDTO {
+    text: string,
+    articleId: number,
+}
