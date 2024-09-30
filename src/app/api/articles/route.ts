@@ -1,6 +1,8 @@
+import { ARTICLES_PER_PAGE } from "@/utils/constants";
 import prisma from "@/utils/db";
 import { createArticleDTO } from "@/utils/types";
 import { createArticleSchema } from "@/utils/validationSchema";
+import { verifyToken } from "@/utils/verifyToken";
 import { NextRequest, NextResponse } from "next/server";
 
 /**
@@ -11,7 +13,12 @@ import { NextRequest, NextResponse } from "next/server";
 */
 export async function GET(request: NextRequest) {
     try {
-        const articles = await prisma.article.findMany()
+        const pageNumber = request.nextUrl.searchParams.get("pageNumber") || "1"
+        
+        const articles = await prisma.article.findMany({
+            skip: ARTICLES_PER_PAGE * (parseInt(pageNumber) - 1),
+            take: ARTICLES_PER_PAGE
+        })
         return NextResponse.json(articles, { status: 200 });
     } catch (error) {
         return NextResponse.json({
@@ -24,10 +31,17 @@ export async function GET(request: NextRequest) {
  *  @method  POST
  *  @route   /api/articles
  *  @desc    Create New Article
- *  @access  public
+ *  @access  private (only admin)
 */
 export async function POST(request: NextRequest) {
     try {
+        const user = verifyToken(request)
+        if (user === null || user.isAdmin === false) {
+            return NextResponse.json({
+                message: "Only Admin, Access Denied!"
+            }, { status: 403 })
+        }
+        
         const body = (await request.json()) as createArticleDTO;
         const validation = createArticleSchema.safeParse(body);
         if (!validation.success) {
