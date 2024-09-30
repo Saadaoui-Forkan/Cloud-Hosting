@@ -15,7 +15,23 @@ interface Props {
 */
 export async function GET(request: NextRequest, { params }: Props) {
     try {
-        const article = await prisma.article.findUnique({ where: { id: parseInt(params.id) } })
+        const article = await prisma.article.findUnique({ 
+            where: { id: parseInt(params.id) }, 
+            include: {
+                // comments: true  ==> getting all comments without any order
+                comments: {
+                    include: {
+                        user: {
+                            select: {
+                                username: true,
+                                email: true,
+                            }
+                        },
+                    },
+                    orderBy: { createdAt: "desc" }
+                }
+            }
+        })
         if (!article) {
             return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
         }
@@ -87,7 +103,6 @@ export async function DELETE(request: NextRequest, { params }: Props) {
             return NextResponse.json({ message: "Article Not Found" }, { status: 404 })
         }
     
-        const body = (await request.json()) as updateArticleDTO
         await prisma.article.delete({
             where: { id: parseInt(params.id) },
         })
