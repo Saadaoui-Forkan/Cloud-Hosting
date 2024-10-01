@@ -1,19 +1,21 @@
-'use client'
-import { Article } from '@/utils/types';
-import React, { useEffect, useState } from 'react'
+import { Article } from '@prisma/client';
+import React from 'react'
 import ArticleItem from './ArticleItem';
 import SearchInput from '@/components/articles/SearchInput';
 import Pagination from '@/components/articles/Pagination';
+import { getArticles, getArticlesCount } from '@/apiCall/articlesApiCall';
+import { ARTICLES_PER_PAGE } from '@/utils/constants';
 
-const Articles = async () => {
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+interface ArticlesPageProps {
+  searchParams: { pageNumber: string }
+}
 
-  if(!response.ok){
-    throw new Error('Failed to fetch articles')
-  }
+const Articles = async ({ searchParams }: ArticlesPageProps) => {
+  const { pageNumber } = searchParams
+  const articles: Article[] = await getArticles(pageNumber)
 
-  const articles: Article[] = await response.json()
+  const count: number = await getArticlesCount()
+  const pages = Math.ceil(count / ARTICLES_PER_PAGE)
   return (
     <section className="container m-auto px-5">
       <SearchInput/>
@@ -22,7 +24,7 @@ const Articles = async () => {
           <ArticleItem article={item} key={item.id} />
         ))}
       </div>
-      <Pagination/>
+      <Pagination pages={pages} route='/articles' pageNumber={parseInt(pageNumber)}/>
     </section>
   )
 }
