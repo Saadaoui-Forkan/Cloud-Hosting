@@ -84,3 +84,36 @@ export const createCommentSchema = z.object({
 
   articleId: z.number()
 })
+
+export const updateProfileSchema = z.object({
+  username: z
+    .string({
+      required_error: "Username is required",
+    })
+    .min(2, {
+      message:
+        "The username must contain at least 2 characters and a maximum of 100 characters.",
+    })
+    .max(100, {
+      message:
+        "The username must contain at least 2 characters and a maximum of 100 characters.",
+    })
+    .optional(),
+
+  email: z
+    .string({
+      required_error: "Email is required",
+    })
+    .email()
+    .optional(),
+
+  password: z
+    .string({
+      required_error: "Password is required",
+    })
+    .min(6, {
+      message:
+        "The Password must contain at least 6 characters.",
+    })
+    .optional(),
+})
