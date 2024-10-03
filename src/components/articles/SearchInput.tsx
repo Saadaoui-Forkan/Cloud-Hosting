@@ -8,7 +8,7 @@ const SearchInput = () => {
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(searchArticle);
-    router.push(`/articles/search?article=${searchArticle}`);
+    router.push(`/articles/search?searchText=${searchArticle}`);
   };
   return (
     <form className="flex justify-center m-5" onSubmit={handleSearch}>
