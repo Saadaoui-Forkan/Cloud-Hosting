@@ -1,35 +1,49 @@
 "use client";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [name, setName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleRegister = (e: React.FormEvent) => {
+  const router = useRouter()
+
+  const handleRegister = async(e: React.FormEvent) => {
     e.preventDefault();
     // Form Validation
-    if (name === "") toast.error("Username is required")
+    if (username === "") toast.error("Username is required")
     if (email === "") toast.error("Email is required")
     if (password === "") toast.error("Password is required")
-        
-    console.log("Email:", email, "Password:", password, "username:",  name);
+    try {
+      await axios.post("http://localhost:3000/api/users/register", { username, email, password })
+      router.replace("/");
+      setLoading(false);
+      router.refresh();
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <form onSubmit={handleRegister} className="space-y-6">
       <div>
         <label
-          htmlFor="name"
+          htmlFor="username"
           className="block text-sm font-medium text-gray-700"
         >
           Username
         </label>
         <input
-          type="name"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          type="username"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           placeholder="Enter your email"
         />
@@ -72,8 +86,13 @@ const RegisterForm = () => {
       <button
         type="submit"
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition duration-300 ease-in-out"
+        disabled={loading} 
       >
-        Register
+        {loading ? (
+          <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-r-2 border-white inline-block"></span>
+        ) : (
+          "Register"
+        )}
       </button>
     </form>
   );

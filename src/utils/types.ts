@@ -46,3 +46,8 @@ export interface CreateCommentDTO {
 export interface UpdateCommentDTO {
     text: string,
 }
+
+export interface NavLink {
+    name: string;
+    path: string;
+}

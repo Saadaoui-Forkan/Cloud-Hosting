@@ -2,8 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../../public/logo.png";
 import RegisterForm from "@/components/user/RegisterForm";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const Register = () => {
+  const token = cookies().get("jwtToken")
+  if(token) redirect('/')
+    
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-6 max-w-md w-full">
