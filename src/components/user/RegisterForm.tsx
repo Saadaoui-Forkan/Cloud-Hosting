@@ -1,4 +1,5 @@
 "use client";
+import { DOMAIN } from "@/utils/constants";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -19,7 +20,7 @@ const RegisterForm = () => {
     if (email === "") toast.error("Email is required")
     if (password === "") toast.error("Password is required")
     try {
-      await axios.post("http://localhost:3000/api/users/register", { username, email, password })
+      await axios.post(`${DOMAIN}/users/register`, { username, email, password })
       router.replace("/");
       setLoading(false);
       router.refresh();

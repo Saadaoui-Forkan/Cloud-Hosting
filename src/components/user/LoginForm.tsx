@@ -1,4 +1,5 @@
 "use client";
+import { DOMAIN } from "@/utils/constants";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -17,7 +18,7 @@ const LoginForm = () => {
     if (password === "") toast.error("Password is required");
     try {
       setLoading(true);
-      await axios.post("http://localhost:3000/api/users/login", {
+      await axios.post(`${DOMAIN}/users/login`, {
         email,
         password,
       });
