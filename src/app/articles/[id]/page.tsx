@@ -43,7 +43,7 @@ const SingleArticle = async ({ params }: SingleArticleProps) => {
         </div>
       )}
       {article.comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
+        <Comment key={comment.id} comment={comment} userId={payload?.id}/>
       ))}
     </section>
   );
