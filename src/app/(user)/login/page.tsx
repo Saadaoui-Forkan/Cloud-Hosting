@@ -6,8 +6,6 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 const Login = () => {
-  const token = cookies().get("jwtToken")
-  if(token) redirect('/')
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">

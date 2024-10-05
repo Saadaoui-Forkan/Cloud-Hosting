@@ -12,12 +12,12 @@ const Header = () => {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Articles", path: "/articles?pageNumber=1" },
-    { name: "Admin", path: "/admin" },
+    ...(payload?.isAdmin ? [{ name: "Admin", path: "/admin" }] : []),
   ];
 
   return (
     <>
-      <Navbar navLinks={navLinks} payload={payload}/>
+      <Navbar navLinks={navLinks} payload={payload} />
     </>
   );
 };
