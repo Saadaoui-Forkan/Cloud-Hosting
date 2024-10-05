@@ -15,6 +15,7 @@ const SingleArticle = async ({ params }: SingleArticleProps) => {
   const token = cookies().get("jwtToken")?.value || "";
   const payload = verifyTokenClient(token);
 
+  // await new Promise(resolve => setTimeout(resolve, 5000))
   const article: SingleArticleId = await getSingleArticle(params.id);
   return (
     <section className="container mx-auto p-6 max-w-4xl">
