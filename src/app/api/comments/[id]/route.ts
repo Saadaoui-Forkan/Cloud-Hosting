@@ -64,7 +64,7 @@ export async function DELETE(request: NextRequest, { params }: Props) {
             return NextResponse.json({ message: "No Token Provided! Access Denied!" }, { status: 401 });
         }
 
-        if (user.isAdmin === true || user.id !== comment.userId) {
+        if (user.isAdmin === true || user.id === comment.userId) {
             await prisma.comment.delete(
                 { where: { id: parseInt(params.id) } }
             )

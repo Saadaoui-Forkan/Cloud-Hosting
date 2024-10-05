@@ -4,6 +4,12 @@ import moment from "moment";
 import React, { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import UpdateCommentModal from "./UpdateCommentModal";
+import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import axios from "axios";
+import { DOMAIN } from "@/utils/constants";
+import { useRouter } from "next/navigation";
 
 interface CommentProps {
   comment: CommentWithUser;
@@ -11,8 +17,31 @@ interface CommentProps {
 }
 
 const Comment = ({ comment, userId }: CommentProps) => {
-  console.log(comment);
+  const MySwal = withReactContent(Swal);
+  const router = useRouter()
   const [open, setOpen] = useState<boolean>(false);
+  // Handle Delete A Comment
+  const handleDeleteComment = async() => {
+    try {
+      MySwal.fire({
+        title: 'Are you sure?',
+        text: "Once deleted, you will not be able to recover this post!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete!',
+      }).then(async (result: { isConfirmed: any }) => {
+        if (result.isConfirmed) {
+          await axios.delete(`${DOMAIN}/comments/${comment.id}`)
+          router.refresh()
+        }
+      });
+    } catch (error: any) {
+      toast.error(error?.response?.data.message)
+      console.log(error)
+    }
+  }
   return (
     <div className="bg-white p-4 rounded-lg border border-gray-300 w-full mb-4">
       <div className="flex items-center justify-between">
@@ -41,7 +70,7 @@ const Comment = ({ comment, userId }: CommentProps) => {
           </button>
           <button
             className="text-red-600 hover:text-red-800 transition"
-            // onClick={() => setOpen(false)}
+            onClick={handleDeleteComment}
           >
             <FaTrash size={20} />
           </button>
