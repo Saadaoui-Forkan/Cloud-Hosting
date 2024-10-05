@@ -15,7 +15,7 @@ const AdminSidebar = () => {
       <ul className="space-y-6">
         <li>
           <Link
-            href="/admin/articles_table"
+            href="/admin/articles_table?pageNumber=1"
             className="flex items-center text-xl hover:text-yellow-400 transition-colors"
           >
             <MdOutlineArticle className="mr-2 text-2xl" />

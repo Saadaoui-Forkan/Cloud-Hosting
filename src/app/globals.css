@@ -31,7 +31,7 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 12px; /* Change the width of the scrollbar */
+  width: 8px; /* Change the width of the scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -47,6 +47,21 @@
   background-color: #f1f1f1; /* Background of the scrollbar track */
 }
 
-button:disabled {
-  cursor: not-allowed;
+/* Custum Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4A90E2 !important;
+  border-radius: 10px !important;
+  border: 3px solid #E5E5E5 !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #357ABD !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #F5F5F5 !important;
 }
