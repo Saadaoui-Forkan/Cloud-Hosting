@@ -2,6 +2,7 @@ import { getArticles, getArticlesCount } from "@/apiCall/articlesApiCall";
 import DeleteArticleBtn from "@/components/admin/DeleteArticleBtn";
 import Pagination from "@/components/articles/Pagination";
 import { ARTICLES_PER_PAGE } from "@/utils/constants";
+import prisma from "@/utils/db";
 import { verifyTokenClient } from "@/utils/verifyToken";
 import { Article } from "@prisma/client";
 import moment from "moment";
@@ -24,7 +25,8 @@ const AdminArticlesTable = async ({
   if (payload?.isAdmin === false) redirect("/");
 
   const articles: Article[] = await getArticles(pageNumber);
-  const count: number = await getArticlesCount();
+  // const count: number = await getArticlesCount();
+  const count: number = await prisma.article.count()
   const pages = Math.ceil(count / ARTICLES_PER_PAGE);
 
   return (
