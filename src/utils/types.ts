@@ -50,3 +50,11 @@ export interface NavLink {
 export type CommentWithUser = Comment & { user: User }
 
 export type SingleArticleId = Article & { comments: CommentWithUser[] }
+
+export interface AxiosError {
+    response?: {
+      data?: {
+        message?: string 
+      } 
+    } 
+}

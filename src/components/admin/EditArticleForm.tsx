@@ -1,5 +1,6 @@
 "use client";
 import { DOMAIN } from "@/utils/constants";
+import { AxiosError } from "@/utils/types";
 import { Article } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -24,9 +25,11 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
       await axios.put(`${DOMAIN}/articles/${article.id}`, { title, description })
       toast.success("Article Updated.")
       router.refresh()
-    } catch (error: any) {
-      toast.error(error?.response?.data.message)
-      console.log(error)
+    } catch (error) {
+        const axiosError = error as AxiosError;
+        const errorMessage = axiosError.response?.data?.message || "An error occurred";
+        toast.error(errorMessage);
+        console.log(axiosError);
     }
   };
 

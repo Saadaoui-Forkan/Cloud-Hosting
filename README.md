@@ -6,3 +6,12 @@
 [NEON](https://neon.tech/)
 * remove migrations folder and execute `npx prisma migrate dev` to create new migrations folder for the new database
  - the new database will be empty.
+
+## Deploying to vercel
+[Vercel](https://vercel.com/)
+* Build Command (Check OVERRIDE) 
+prisma generate && prisma migrate deploy && next build
+* Environment Variables:
+copy & paste your env variables (NODE_ENV = production)
+
+

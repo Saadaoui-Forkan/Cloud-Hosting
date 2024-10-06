@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../../public/logo.png";
 import RegisterForm from "@/components/user/RegisterForm";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 const Register = () => {
   return (

@@ -1,5 +1,5 @@
 import prisma from "@/utils/db";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 /**
  *  @method  GET
@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
  *  @desc    Get Articles Count
  *  @access  public
 */
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
         const count = await prisma.article.count()
         return NextResponse.json(count, { status: 200 })

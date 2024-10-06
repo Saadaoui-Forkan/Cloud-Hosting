@@ -1,7 +1,6 @@
 import { DOMAIN } from "@/utils/constants";
 import { SingleArticleId } from "@/utils/types";
 import { Article, Comment } from "@prisma/client"
-import { headers } from "next/headers";
 
 // Fetch Articles Based On Page Number
 export async function getArticles (pageNumber: string | undefined) : Promise<Article[]> {

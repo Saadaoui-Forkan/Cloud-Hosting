@@ -3,7 +3,7 @@ import React from 'react'
 import ArticleItem from './ArticleItem';
 import SearchInput from '@/components/articles/SearchInput';
 import Pagination from '@/components/articles/Pagination';
-import { getArticles, getArticlesCount } from '@/apiCall/articlesApiCall';
+import { getArticles } from '@/apiCall/articlesApiCall';
 import { ARTICLES_PER_PAGE } from '@/utils/constants';
 import prisma from '@/utils/db';
 

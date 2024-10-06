@@ -1,5 +1,6 @@
 "use client";
 import { DOMAIN } from "@/utils/constants";
+import { AxiosError } from "@/utils/types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -20,9 +21,11 @@ const AddCommentForm = ({ articleId }: AddCommentProps) => {
       await axios.post(`${DOMAIN}/comments`, { text, articleId });
       router.refresh();
       setText("");
-    } catch (error: any) {
-      toast.error(error?.response.data.message);
-      console.log(error);
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      const errorMessage = axiosError.response?.data?.message || "An error occurred";
+      toast.error(errorMessage);
+      console.log(axiosError);
     }
   };
   return (

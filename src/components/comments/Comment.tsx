@@ -1,11 +1,11 @@
 "use client";
-import { CommentWithUser } from "@/utils/types";
+import { AxiosError, CommentWithUser } from "@/utils/types";
 import moment from "moment";
 import React, { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import UpdateCommentModal from "./UpdateCommentModal";
 import { toast } from "react-toastify";
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertResult } from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
@@ -31,15 +31,17 @@ const Comment = ({ comment, userId }: CommentProps) => {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete!',
-      }).then(async (result: { isConfirmed: any }) => {
+      }).then(async (result: SweetAlertResult) => {
         if (result.isConfirmed) {
           await axios.delete(`${DOMAIN}/comments/${comment.id}`)
           router.refresh()
         }
       });
-    } catch (error: any) {
-      toast.error(error?.response?.data.message)
-      console.log(error)
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      const errorMessage = axiosError.response?.data?.message || "An error occurred";
+      toast.error(errorMessage);
+      console.log(axiosError);
     }
   }
   return (

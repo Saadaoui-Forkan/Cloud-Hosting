@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../../public/logo.png";
 import LoginForm from "@/components/user/LoginForm";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 const Login = () => {
   return (
@@ -17,7 +15,7 @@ const Login = () => {
         <LoginForm />
 
         <p className="text-center text-sm text-gray-500 mt-4">
-          Don't have an account?{" "}
+          Do not have an account?{" "}
           <Link href="/register" className="text-blue-600 hover:underline">
             Register
           </Link>

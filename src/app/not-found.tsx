@@ -11,7 +11,7 @@ const NotFound = () => {
           Oops! Page not found
         </h2>
         <p className="text-lg md:text-xl mb-8">
-          Sorry, the page you're looking for doesn't exist.
+          Sorry, the page you&apos;re looking for doesn&apos;t exist.
         </p>
         <Link href="/" className="cursor-pointer bg-white text-blue-600 py-3 px-8 rounded-full text-lg font-semibold shadow-md hover:bg-gray-100 transition duration-300">
             Back to Home

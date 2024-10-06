@@ -1,4 +1,4 @@
-import { getArticles, getArticlesCount } from "@/apiCall/articlesApiCall";
+import { getArticles } from "@/apiCall/articlesApiCall";
 import DeleteArticleBtn from "@/components/admin/DeleteArticleBtn";
 import Pagination from "@/components/articles/Pagination";
 import { ARTICLES_PER_PAGE } from "@/utils/constants";
@@ -9,7 +9,7 @@ import moment from "moment";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { FaEdit, FaTrashAlt, FaEye } from "react-icons/fa";
+import { FaEdit, FaEye } from "react-icons/fa";
 
 interface AdminArticlesProps {
   searchParams: { pageNumber: string };
