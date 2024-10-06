@@ -25,7 +25,7 @@ const Comment = ({ comment, userId }: CommentProps) => {
     try {
       MySwal.fire({
         title: 'Are you sure?',
-        text: "Once deleted, you will not be able to recover this post!",
+        text: "Once deleted, you will not be able to recover this comment!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

@@ -1,4 +1,5 @@
 import { getArticles, getArticlesCount } from "@/apiCall/articlesApiCall";
+import DeleteArticleBtn from "@/components/admin/DeleteArticleBtn";
 import Pagination from "@/components/articles/Pagination";
 import { ARTICLES_PER_PAGE } from "@/utils/constants";
 import { verifyTokenClient } from "@/utils/verifyToken";
@@ -27,10 +28,10 @@ const AdminArticlesTable = async ({
   const pages = Math.ceil(count / ARTICLES_PER_PAGE);
 
   return (
-    <div className="container mx-auto p-6 max-w-6xl">
+    <div className="container mx-auto p-[2px] md:p-6 max-w-6xl">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Manage Articles</h1>
 
-      <div className="overflow-x-auto custom-scrollbar">
+      <div className="overflow-x-auto">
         <table className="min-w-full bg-white rounded-lg shadow-lg">
           <thead className="bg-gray-200">
             <tr>
@@ -48,7 +49,7 @@ const AdminArticlesTable = async ({
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="custom-scrollbar">
             {articles.map((article) => (
               <tr
                 key={article.id}
@@ -65,9 +66,7 @@ const AdminArticlesTable = async ({
                         <FaEdit size={18} />
                       </span>
                     </Link>
-                    <button className="text-red-600 hover:text-red-800 transition duration-300">
-                      <FaTrashAlt size={18} />
-                    </button>
+                    <DeleteArticleBtn articleId={article.id}/>
                   </div>
                 </td>
                 <td className="py-3 px-4 text-center">
