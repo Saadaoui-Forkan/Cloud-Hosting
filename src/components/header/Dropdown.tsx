@@ -1,4 +1,5 @@
 "use client";
+import { DOMAIN } from "@/utils/constants";
 import { JWTPayload } from "@/utils/types";
 import axios from "axios";
 import Link from "next/link";
@@ -15,7 +16,7 @@ const Dropdown = ({ setDropdownOpen, payload }: DropdownProps) => {
     const router = useRouter()
     const handleLogout = async() => {
         try {
-            await axios.get("http://localhost:3000/api/users/logout")
+            await axios.get(`${DOMAIN}/users/logout`)
             router.push('/')
             setDropdownOpen(false)
             router.refresh()
