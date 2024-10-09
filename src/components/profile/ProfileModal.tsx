@@ -23,7 +23,6 @@ const ProfileModal = ({
   const router = useRouter();
   const [updatedUsername, setUpdatedUsername] = useState(username);
   const [updatedEmail, setUpdatedEmail] = useState(email);
-  const [updatePassword, setUpdatePassword] = useState("");
 
   const updateProfile = async (e: FormEvent) => {
     e.preventDefault();
@@ -32,7 +31,6 @@ const ProfileModal = ({
 
     try {
       await axios.put(`${DOMAIN}/users/profile/${id}`, {
-        password: updatePassword,
         email: updatedEmail,
         username: updatedUsername,
       });
@@ -80,17 +78,6 @@ const ProfileModal = ({
             className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
             value={updatedEmail}
             onChange={(e) => setUpdatedEmail(e.target.value)}
-          />
-          <label htmlFor="password" className="font-semibold">
-            New Password
-          </label>
-          <input
-            placeholder="Enter your new password"
-            type="password"
-            id="password"
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
-            value={updatePassword}
-            onChange={(e) => setUpdatePassword(e.target.value)}
           />
           <button
             type="submit"

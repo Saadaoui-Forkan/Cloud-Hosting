@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { toast } from "react-toastify";
 import { cookies } from "next/headers";
 import { verifyTokenClient } from "@/utils/verifyToken";
 import { getProfile } from "@/apiCall/profileApiCall";

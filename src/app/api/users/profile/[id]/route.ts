@@ -2,7 +2,6 @@ import prisma from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
 import { UpdateProfileDTO } from "@/utils/types";
 import { verifyToken } from "@/utils/verifyToken";
-import bcrypt from "bcryptjs"
 import { updateProfileSchema } from "@/utils/validationSchema";
 
 interface Props {
@@ -82,16 +81,11 @@ export async function PUT(request: NextRequest, { params }: Props) {
                 { status: 400 }
             );
         }
-        if (body.password) {
-            const salt = await bcrypt.genSalt(10)
-            body.password = await bcrypt.hash(body.password, salt)
-        }
         const updatedUser = await prisma.user.update({
             where: { id: parseInt(params.id) },
             data: {
                 username: body.username,
                 email: body.email,
-                password: body.password,
             }
         })
 

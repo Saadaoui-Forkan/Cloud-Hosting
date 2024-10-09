@@ -9,12 +9,11 @@ const Header = async() => {
   const token = cookies().get("jwtToken")?.value || ""
   const payload = verifyTokenClient(token)
 
-  if (!payload) {
-    return null
+  let username = '';
+  if (payload) {
+    const res = await getProfile(token, payload.id);
+    username = res?.username || '';
   }
-  
-  const res = await getProfile(token, payload.id);
-  const username = res?.username;
   
   const navLinks: NavLink[] = [
     { name: "Home", path: "/" },

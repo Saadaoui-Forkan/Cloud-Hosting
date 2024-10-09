@@ -11,14 +11,10 @@ interface EditProfileBtnProps {
 const EditProfileBtn = ({email, username, id}: EditProfileBtnProps) => {
   const [profileModal, setProfileModal] = useState<boolean>(false);
 
-  const handleEditProfile = () => {
-    setProfileModal(true);
-  };
-
   return (
     <div className="my-4">
       <button
-        onClick={handleEditProfile}
+        onClick={()=>setProfileModal(true)}
         className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
       >
         Edit Profile

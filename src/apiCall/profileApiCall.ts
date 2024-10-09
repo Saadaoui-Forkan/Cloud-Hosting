@@ -1,6 +1,5 @@
 import { DOMAIN } from "@/utils/constants";
 import { ProfileType } from "@/utils/types";
-import { User } from "@prisma/client";
 
 // Get Profile
 export async function getProfile (token: string, id: number) : Promise<ProfileType> {

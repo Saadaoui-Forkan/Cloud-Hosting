@@ -67,20 +67,20 @@ const Navbar = ({ navLinks, payload, username }: NavbarProps) => {
             ></div>
             </div>
             {payload ? (
-            <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2">
                 <h2 className="font-bold">{username}</h2>
                 <FiMoreVertical
                   className="cursor-pointer text-xl"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 />
-            </div>
+              </div>
             ) : (
-            <Link
-                href="/login"
-                className="px-2 py-1 bg-lightRed text-white rounded-lg font-bold border-2 border-lightRed hover:text-lightRed hover:bg-white transition duration-300"
-            >
-                Login
-            </Link>
+              <Link
+                  href="/login"
+                  className="px-2 py-1 bg-lightRed text-white rounded-lg font-bold border-2 border-lightRed hover:text-lightRed hover:bg-white transition duration-300"
+              >
+                  Login
+              </Link>
             )}
 
             {dropdownOpen ? <Dropdown setDropdownOpen={setDropdownOpen} payload={payload}/> : ""}
