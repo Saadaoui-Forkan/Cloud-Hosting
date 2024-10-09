@@ -118,6 +118,19 @@ export async function GET(request: NextRequest, { params }: Props) {
                 email: true,
                 username: true,
                 createdAt: true,
+                updatedAt: true,
+                comments: {
+                    select: {
+                        id: true,
+                        text: true,
+                        createdAt: true,
+                        article: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                    },
+                },
             }
         });
         if (!user) {

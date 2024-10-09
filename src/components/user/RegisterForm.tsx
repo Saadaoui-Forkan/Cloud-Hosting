@@ -21,10 +21,12 @@ const RegisterForm = () => {
     if (email === "") toast.error("Email is required")
     if (password === "") toast.error("Password is required")
     try {
+      setLoading(true)
       await axios.post(`${DOMAIN}/users/register`, { username, email, password })
       router.replace("/");
       setLoading(false);
       router.refresh();
+      setLoading(false)
     } catch (error) {
       const axiosError = error as AxiosError;
       const errorMessage = axiosError.response?.data?.message || "An error occurred";

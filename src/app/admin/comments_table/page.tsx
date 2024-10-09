@@ -51,11 +51,6 @@ const AdminCommentsPage = async () => {
           </tbody>
         </table>
       </div>
-      {/* <Pagination
-        pageNumber={parseInt(pageNumber)}
-        pages={pages}
-        route="/admin/articles_table"
-      /> */}
     </div>
   );
 };

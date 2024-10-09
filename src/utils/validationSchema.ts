@@ -106,14 +106,4 @@ export const updateProfileSchema = z.object({
     })
     .email()
     .optional(),
-
-  password: z
-    .string({
-      required_error: "Password is required",
-    })
-    .min(6, {
-      message:
-        "The Password must contain at least 6 characters.",
-    })
-    .optional(),
 })

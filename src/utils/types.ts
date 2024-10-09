@@ -58,3 +58,6 @@ export interface AxiosError {
       } 
     } 
 }
+
+type CommentWithArticle = Comment & { article: Article }
+export type ProfileType = User & { comments: CommentWithArticle[] }

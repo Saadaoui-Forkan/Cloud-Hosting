@@ -11,9 +11,10 @@ import Dropdown from "./Dropdown";
 interface NavbarProps {
   navLinks: NavLink[];
   payload: JWTPayload | null;
+  username: string
 }
 
-const Navbar = ({ navLinks, payload }: NavbarProps) => {
+const Navbar = ({ navLinks, payload, username }: NavbarProps) => {
   const pathname: string = usePathname();
   const [openNav, setOpenNav] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
@@ -67,10 +68,10 @@ const Navbar = ({ navLinks, payload }: NavbarProps) => {
             </div>
             {payload ? (
             <div className="flex items-center space-x-2">
-                <div>{payload.username}</div>
+                <h2 className="font-bold">{username}</h2>
                 <FiMoreVertical
-                className="cursor-pointer text-xl"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="cursor-pointer text-xl"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
                 />
             </div>
             ) : (
@@ -82,7 +83,7 @@ const Navbar = ({ navLinks, payload }: NavbarProps) => {
             </Link>
             )}
 
-            {dropdownOpen ? <Dropdown setDropdownOpen={setDropdownOpen}/> : ""}
+            {dropdownOpen ? <Dropdown setDropdownOpen={setDropdownOpen} payload={payload}/> : ""}
         </div>
 
       {/* Mobile Menu */}

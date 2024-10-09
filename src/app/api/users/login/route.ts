@@ -7,7 +7,7 @@ import { setCookie } from "@/utils/generateToken";
 
 /**
  *  @method  POST
- *  @route   /api/users/register
+ *  @route   /api/users/login
  *  @desc    Create New User
  *  @access  public
 */

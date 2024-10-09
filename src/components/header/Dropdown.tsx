@@ -1,14 +1,17 @@
 "use client";
+import { JWTPayload } from "@/utils/types";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
 
 interface DropdownProps{
     setDropdownOpen: Dispatch<SetStateAction<boolean>>
+    payload: JWTPayload | null;
 }
 
-const Dropdown = ({ setDropdownOpen }: DropdownProps) => {
+const Dropdown = ({ setDropdownOpen, payload }: DropdownProps) => {
     const router = useRouter()
     const handleLogout = async() => {
         try {
@@ -27,6 +30,12 @@ const Dropdown = ({ setDropdownOpen }: DropdownProps) => {
                 onClick={handleLogout}
             >
                 Logout
+            </button>
+            <button
+                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                onClick={()=>setDropdownOpen(false)}
+            >
+                <Link href={`/profile/${payload?.id}`}>Profile</Link>
             </button>
         </div>
     );
